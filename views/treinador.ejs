@@ -1,0 +1,22 @@
+<h1>Cadastro de Treinadores</h1>
+<form action="/treinador" method="POST">
+    <label for="nome">Nome do Treinador:</label>
+    <input type="text" name="nome" required>
+    <label for="pokemons">Pokémons:</label>
+    <select name="pokemonIds" multiple required>
+        <% pokemons.forEach(pokemon => { %>
+            <option value="<%= pokemon.id %>"><%= pokemon.nome %></option>
+        <% }); %>
+    </select>
+    <button type="submit">Cadastrar Treinador</button>
+</form>
+<h2>Lista de Treinadores</h2>
+<ul>
+    <% treinador.forEach(treinador => { %>
+        <li><%= treinador.nome %> - Pokémons: 
+            <% treinador.pokemons.forEach(pokemon => { %>
+                <%= pokemon.nome %>,
+            <% }); %>
+        </li>
+    <% }); %>
+</ul>
