@@ -8,27 +8,35 @@
 <body>
     <div class="pokedex-container">
         <h1>Pokédex</h1>
+        <ul>
+            <% pokemons.forEach(function(pokemon) { %>
+                <li>
+                    <a href="/pokemon/<%= pokemon.id %>" style="text-decoration: none; color: inherit;">
+                        <%= pokemon.nome %>
+                    </a> - <%= pokemon.tipo %>
+                </li>
+            <% }); %>
+        </ul>
 
-        <div class="pokemon-list">
-            <ul>
-                <% pokemons.forEach(function(pokemon) { %>
-                    <li>
-                        <a href="/pokemon/<%= pokemon.id %>"><%= pokemon.nome %></a> - <%= pokemon.tipo %>
-                    </li>
-                <% }); %>
-            </ul>            
+        <div class="add-form">
+            <h2>Adicionar Novo Pokémon</h2>
+            <form action="/pokemon" method="POST">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="tipo">Tipo:</label>
+                <input type="text" id="tipo" name="tipo" required>
+
+                <button type="submit">Adicionar Pokémon</button>
+            </form>
         </div>
 
-        <h2>Adicionar Novo Pokémon</h2>
-        <form class="add-pokemon-form" action="/pokemon" method="POST">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-
-            <label for="tipo">Tipo:</label>
-            <input type="text" id="tipo" name="tipo" required>
-
-            <button type="submit">Adicionar Pokémon</button>
-        </form>
+        <!-- Links para treinadores -->
+        <div class="trainer-links">
+            <h2>Treinadores</h2>
+            <a href="/trainers" class="back-link">Ver Lista de Treinadores</a>
+            <a href="/trainers/new" class="back-link">Cadastrar Novo Treinador</a>
+        </div>
     </div>
 </body>
 </html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Treinadores</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="pokedex-container">
+        <h1>Treinadores</h1>
+        <ul>
+            <% trainers.forEach(function(trainer) { %>
+                <li>
+                    <strong><%= trainer.name %></strong> - Pokémon:
+                    <ul>
+                        <% trainer.pokemons.forEach(function(pokemon) { %>
+                            <li><%= pokemon.nome %> (Tipo: <%= pokemon.tipo %>)</li>
+                        <% }); %>
+                    </ul>
+                </li>
+            <% }); %>
+        </ul>
+        <a class="back-link" href="/">Voltar</a>
+    </div>
+</body>
+</html>

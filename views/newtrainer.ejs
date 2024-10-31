@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Treinador</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="pokedex-container">
+        <h1>Cadastro de Treinador</h1>
+        <form action="/trainers" method="POST">
+            <label for="name">Nome do Treinador:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label>Pokémons:</label>
+            <div class="pokemon-list">
+                <% pokemons.forEach(function(pokemon) { %>
+                    <input type="checkbox" id="pokemon-<%= pokemon.id %>" name="pokemons" value="<%= pokemon.id %>">
+                    <label for="pokemon-<%= pokemon.id %>"><%= pokemon.nome %> (Tipo: <%= pokemon.tipo %>)</label><br>
+                <% }); %>
+            </div>
+
+            <button type="submit">Cadastrar Treinador</button>
+        </form>
+        <a class="back-link" href="/trainers">Voltar à Lista de Treinadores</a>
+    </div>
+</body>
+</html>
