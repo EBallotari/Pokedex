@@ -1,18 +1,28 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const pokemonRoutes = require('./routes/pokemonRoutes');
-const trainerRoutes = require('./routes/trainerRoutes');
-
+const path = require('path'); 
 const app = express();
-app.set('view engine', 'ejs');
-app.set('views', './views');
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
 
-app.use('/', pokemonRoutes);
-app.use('/', trainerRoutes); 
+app.use(express.static('public')); 
+app.set('view engine', 'ejs'); 
+app.set('views', path.join(__dirname, 'views')); 
 
-const PORT = process.env.PORT || 3000;
+app.get('/', (req, res) => {
+    res.render('index'); 
+});
+
+app.get('/cadastrar-pokemon', (req, res) => {
+    res.render('cadastrar_pokemon'); 
+});
+
+app.get('/cadastrar-treinador', (req, res) => {
+    res.render('cadastrar_treinador'); 
+});
+
+app.use((req, res) => {
+    res.status(404).send('<h1>Página não encontrada</h1>');
+});
+
+const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

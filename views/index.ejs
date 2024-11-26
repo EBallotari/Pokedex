@@ -1,42 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokédex</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/public/css/global.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+    
 </head>
 <body>
-    <div class="pokedex-container">
-        <h1>Pokédex</h1>
+    <div class="container">
+        <h1>Treinadores</h1>
         <ul>
-            <% pokemons.forEach(function(pokemon) { %>
+            <% treinadores.forEach(treinador => { %>
                 <li>
-                    <a href="/pokemon/<%= pokemon.id %>" style="text-decoration: none; color: inherit;">
-                        <%= pokemon.nome %>
-                    </a> - <%= pokemon.tipo %>
+                    <strong><%= treinador.nome %></strong>
+                    <ul>
+                        <% treinador.pokemons.forEach(pokemon => { %>
+                            <li><%= pokemon.nome %> - <%= pokemon.tipo %></li>
+                        <% }) %>
+                    </ul>
                 </li>
-            <% }); %>
+            <% }) %>
         </ul>
-
-        <div class="add-form">
-            <h2>Adicionar Novo Pokémon</h2>
-            <form action="/pokemon" method="POST">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
-
-                <label for="tipo">Tipo:</label>
-                <input type="text" id="tipo" name="tipo" required>
-
-                <button type="submit">Adicionar Pokémon</button>
-            </form>
-        </div>
-
-        <!-- Links para treinadores -->
-        <div class="trainer-links">
-            <h2>Treinadores</h2>
-            <a href="/trainers" class="back-link">Ver Lista de Treinadores</a>
-            <a href="/trainers/new" class="back-link">Cadastrar Novo Treinador</a>
-        </div>
+        <a href="/pokemons/cadastrar">Cadastrar Pokémon</a>
+        <a href="/treinadores/cadastrar">Cadastrar Treinador</a>
     </div>
 </body>
 </html>
